@@ -1,15 +1,26 @@
-Server title: <input type="text" class="form-control" name="name" placeholder="Enter server name" />
-<br/>
-Server address: <input type="text" class="form-control" name="address" placeholder="Enter server address" />
-<br/>
-Serverquery address: <input type="text" class="form-control" name="sqaddress" placeholder="Serverquery address, not the one visible on the widget" />
+<label>Server Title:</label>
+<input type="text" class="form-control" name="name" placeholder="Enter server name">
 <br>
-Serverquery port: <input type="text" class="form-control" name="sqport" placeholder="Serverquery port" />
+<label>Server Address:</label>
+<input type="text" class="form-control" name="address" placeholder="Enter server address">
 <br>
-Virtual server id: <input type="text" class="form-control" name="sid" placeholder="its a number (usually 1)" />
+<label>Serverquery Address:</label>
+<input type="text" class="form-control" name="sqaddress" placeholder="Serverquery address, not the one visible on the widget">
 <br>
-Username: <input type="text" class="form-control" name="username" placeholder="Enter serverquery username" />
-<br/>
-Password: <input type="text" class="form-control" name="password" placeholder="Enter serverquery password" />
-<br/>
-Show channel tree <input type="checkbox" style="margin-left:5px;width:inherit;display:initial;height:initial;" class="form-control" name="showtree"/>
+<label>Serverquery Port:</label>
+<input type="text" class="form-control" name="sqport" placeholder="Serverquery Port">
+<br>
+<label>Virtual Server ID:</label>
+<input type="text" class="form-control" name="sid" placeholder="Virtual Server ID (Number)">
+<br>
+<label>Username:</label>
+<input type="text" class="form-control" name="username" placeholder="Enter serverquery username">
+<br>
+<label>Password:</label>
+<input type="text" class="form-control" name="password" placeholder="Enter serverquery password">
+<br>
+<div class="checkbox">
+    <label>
+        <input name="showtree" type="checkbox"> Show channel tree?
+    </label>
+</div>
