@@ -1,20 +1,47 @@
-<div class="ts3-module">
-  <a class="ts3-join-info" href="ts3server://{{ts3-address}}">
-    <div class="ts3-title" >
-      {{ts3-server-name}}
-    </div>
-    <div class="ts3-address">
-      {{ts3-address}}
-    </div>
-    <div class="ts3-join-server">
-      join server
-    </div>
-  </a>
-  <div class="ts3-online-clients">
-    {{ts3-online-clients}} Users Online
-  </div>
-  <br>
-  <div class="ts3-tree">
-    {{ts3-tree}}
-  </div>
+<div class="mi-container" data-widget="mi-status">
+    <table class="table widget-table">
+		<tbody>
+		<tr>
+			<td class="td-label">
+				<span>
+					<strong>Status</strong>
+				</span>
+			</td>
+			<td>
+				<span>
+					<a class="fa fa-check-circle text-success"></a>&nbsp;<strong><span class="text-success">Online</span></strong>&nbsp;(<span class="online-players">{{ts3-online-clients}} online)</span>
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="td-label">
+				<span>
+					<strong>Address</strong>
+				</span>
+			</td>
+			<td class="ts3-address">
+				{{ts3-address}}
+			</td>
+		</tr>
+	    <tr>
+			<td class="td-label"></td>
+			<td>
+				<span>
+					<a href="ts3server://{{ts3-address}}">join server</a>
+				</span>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<table class="table widget-table">
+		<tbody>
+			<tr class="ts3-tree">
+			<td colspan="2">
+				<div class="ts3-tree">
+				{{ts3-tree}}
+				</div>
+			</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
