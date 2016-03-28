@@ -1,6 +1,6 @@
 {
   "name": "nodebb-widget-teamspeak",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Teamspeak server widget",
   "main": "library.js",
   "scripts": {
@@ -16,13 +16,22 @@
     "widget"
   ],
   "author": "PitaJ",
+  "contributors": [
+    {
+      "name": "phit",
+      "email": "phit@hush.com"
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pitaj/nodebb-widget-teamspeak/issues"
   },
   "homepage": "https://github.com/pitaj/nodebb-widget-teamspeak",
   "dependencies": {
-    "node-teamspeak": ">=1.0.4",
+    "node-teamspeak": ">=1.0.10",
     "async": ">=0.9.0"
-  }
+  },
+  "nbbpm": {
+    "compatibility": "^1.0.0"
+  },
 }
