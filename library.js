@@ -64,9 +64,9 @@
               for(x in o){
                 if(obj.hasOwnProperty(x)){
                   html += "<div class='channel";
-                  var spacerI = o[x].channel_name.match(/\[[lrcLRC]*spacer[0-9]*\]/);
+                  var spacerI = o[x].channel_name.match(/\[[lrcLRC*]*spacer[0-9]*\]/);
                   //console.log(spacerI);
-                  o[x].channel_name = o[x].channel_name.replace(/\[[lrcLRC]*spacer[0-9]*\]/, '');
+                  o[x].channel_name = o[x].channel_name.replace(/\[[lrcLRC*]*spacer[0-9]*\]/, '');
                   if(spacerI){
                     html += " "+spacerI[0].replace('[', '').replace(']','');
                     switch(o[x].channel_name){
