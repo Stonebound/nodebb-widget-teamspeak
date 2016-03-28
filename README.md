@@ -4,10 +4,7 @@ This plugin for NodeBB allows people to put a configurable widget on their websi
 
 ##Installation
 
-Two options:
-
- 1.  Install the plugin through the ACP (if it ever gets added to the list *cough cough*)
- 2.  Run `npm install nodebb-widget-teamspeak` in the root directory of the NodeBB install
+Run `npm install phit/nodebb-widget-teamspeak` in the root directory of the NodeBB install
 
 Don't forget to restart after installing the plugin. After installing, a new Teamspeak widget should appear next to the rest
 
