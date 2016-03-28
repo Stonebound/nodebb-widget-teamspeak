@@ -35,7 +35,7 @@
             var online_clients = [];
 
             for(var z=0; z<clients.length; z++){
-              if(!clients[z].client_type && !clients[z].client_away){
+              if(clients[z].client_type != '1' && clients[z].client_away != '1'){
                 online_clients.push(clients[z]);
               }
             }
