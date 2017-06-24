@@ -33,7 +33,10 @@
           return
         }
         tsw.send("use", { sid:serverInfo.sid }, function(err, res){
-          if(err) { console.error(err); }
+          if(err) { 
+            console.error(err);
+            callback(null, '<h4>An Error occurred:<h4><pre>' + JSON.stringify(err, null, 2) + '</pre>')
+          }
 
           function HTMLresponse(obj, clients){
             //console.log(JSON.stringify(obj));
