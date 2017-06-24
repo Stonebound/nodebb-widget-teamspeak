@@ -1,4 +1,4 @@
-<div class="mi-container" data-widget="mi-status">
+<div class="ts3-container" data-widget="mi-status">
     <table class="table widget-table">
 		<tbody>
 		<tr>
@@ -35,8 +35,8 @@
 	</table>
 	<table class="table widget-table">
 		<tbody>
-			<tr class="ts3-tree">
-			<td colspan="2">
+			<tr>
+			<td class="ts3-tree">
 				<div class="ts3-tree">
 				{{ts3-tree}}
 				</div>

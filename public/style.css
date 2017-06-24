@@ -1,46 +1,50 @@
-.ts3-module {
-  box-shadow: 0 1px 10px rgba(0,0,0,.15);
-  background: #f7f7f7;
-  padding: 10px;
-  border-bottom: 1px solid #e9e9e9;
-}
-
-.ts3-title {
-  font-size: 18px;
-  width: 100%;
-  font-weight: 700;
-  line-height: 21px;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-  margin: 0;
-  white-space: normal;
-  text-overflow: initial;
-}
-
-.ts3-join-server {
-  font-variant: small-caps;
-}
-
 .channel {
   padding-left: 10px;
 }
+
 .channel_name {
   font-weight: bold;
-
 }
+
 .client {
-  color: green;
-}
-.client .servergroup6 {
-  color: blue;
+  color: #505050;
 }
 
-.clients_online {
-  padding-left:
+td.ts3-tree {
+    padding: 0 !important;
 }
-.ts3-top {
-  background-image: url("images/ts3logo.png");
+
+.ts3-container .widget-table .td-label {
+    width: inherit;
+}
+
+.ts3-container .widget-table {
+    margin-bottom: 0;
+}
+
+.ts3-container .widget-table .td-label {
+    max-width: 90px;
+    width: 90px;
+}
+
+/* Special Spacers */
+.solidline .channel_name,
+.dashline .channel_name,
+.dotline .channel_name {
+    display: none;
+}
+
+.solidline {
+    border-bottom: 1px solid #000;
+    margin: 3px 8px;
+}
+
+.dashline {
+    border-bottom: 1px dashed #000;
+    margin: 3px 8px;
+}
+
+.dotline {
+    border-bottom: 1px dotted  #000;
+    margin: 3px 8px;
 }
