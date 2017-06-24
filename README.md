@@ -2,15 +2,14 @@
 
 This plugin for NodeBB allows people to put a configurable widget on their website which shows their Teamspeak server's details. Forked from pitaj
 
-##Installation
+## Installation
 
 `npm install nodebb-widget-teamspeak-sb` or through the ACP.
 
-
-##Configuration
+## Configuration
 All one must do is, in the NodeBB Admin area, go to Themes > Widgets, drag the widget wherever you want, and configure the options for the widget.
 
-##Features
+## Features
 * Show how many users are online in the Teamspeak server
 * Can be themed easily
 * Shows the server info and a click on the title or link will open the Teamspeak server in the client
