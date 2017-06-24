@@ -1,4 +1,4 @@
-<div class="ts3-container" data-widget="mi-status">
+<div class="ts3-container" data-widget="ts3-status">
     <table class="table widget-table">
 		<tbody>
 		<tr>

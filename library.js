@@ -8,7 +8,6 @@
         ts3sq = require("node-teamspeak");
 
     module.renderTSwidget = function(widget, callback) {
-
         var serverInfo = {
             address: widget.data.address,
             username: widget.data.username,
@@ -20,28 +19,52 @@
         };
 
         var tsw = new ts3sq(serverInfo.sqaddress, serverInfo.sqport);
-
-        tsw.on("error", function(err) {
+        tsw.setTimeout(4000);
+        
+        function ts3Error(reason, err) {
             console.error(err);
+            var errhtml = "" + fs.readFileSync("./public/templates/ts3-err.tpl");
+            errhtml = errhtml.replace(new RegExp("{{errormessage}}", "g"), reason);
+            return errhtml;
+        }
+        
+        tsw.on("timeout", function(err) {
+            var reason = "Connection timed out!"
+            callback(null, {html: ts3Error(reason, err)});
         });
+        
+        tsw.on("error", function(err) {
+            var reason = "Connection error!"
+            callback(null, {html: ts3Error(reason, err)});
+        });
+        
         tsw.on("connect", function(res) {
             tsw.send("login", {
                 client_login_name: serverInfo.username,
                 client_login_password: serverInfo.password
             }, function(err, res) {
                 if (err) {
-                    console.error(err);
+                    // login fail or ban
+                    var reason = "Query login failed!"
+                    tsw.send("quit");
+                    callback(null, {html: ts3Error(reason, err)});
+                    return;
                 }
+                
                 tsw.send("use", {
                     sid: serverInfo.sid
                 }, function(err, res) {
-                    if (err) {
-                        console.error(err);
+                    if (err) {                      
+                        // no such server
+                        var reason = "Invalid SID!"
+                        tsw.send("quit");
+                        callback(null, {html: ts3Error(reason, err)});
+                        return;
                     }
 
                     function HTMLresponse(obj, clients) {
                         //console.log(JSON.stringify(obj));
-                        console.log(JSON.stringify(clients));
+                        //console.log(JSON.stringify(clients));
 
                         var online_clients = [];
 
@@ -127,7 +150,7 @@
                             return html;
                         }
 
-                        callback(null, pre);
+                        callback(null, {html: pre});
 
                     }
 
