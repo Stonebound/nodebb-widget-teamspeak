@@ -21,11 +21,18 @@
 
     var tsw = new ts3sq(serverInfo.sqaddress, serverInfo.sqport);
 
-    tsw.on("error", function(err){ console.error(err); });
+    tsw.on("error", function(err){
+      console.error(err);
+      callback(null, '<h4>An Error occurred:<h4><pre>' + JSON.stringify(err, null, 2) + '</pre>')
+    });
     tsw.on("connect", function(res){
       tsw.send("login", { client_login_name: serverInfo.username, client_login_password: serverInfo.password }, function(err, res){
-        if(err) { console.error(err); }
-         tsw.send("use", { sid:serverInfo.sid }, function(err, res){
+        if(err) { 
+          console.error(err);
+          callback(null, '<h4>An Error occurred:<h4><pre>' + JSON.stringify(err, null, 2) + '</pre>');
+          return
+        }
+        tsw.send("use", { sid:serverInfo.sid }, function(err, res){
           if(err) { console.error(err); }
 
           function HTMLresponse(obj, clients){
