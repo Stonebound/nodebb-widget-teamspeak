@@ -1,14 +1,14 @@
 {
-  "name": "nodebb-widget-teamspeak",
-  "version": "0.1.2",
-  "description": "Teamspeak server widget",
+  "name": "nodebb-widget-teamspeak-sb",
+  "version": "0.2.0",
+  "description": "Teamspeak 3 server widget for NodeBB - Stonebound Fork",
   "main": "library.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/phit/nodebb-widget-teamspeak.git"
+    "url": "https://github.com/Stonebound/nodebb-widget-teamspeak.git"
   },
   "keywords": [
     "teamspeak",
@@ -19,14 +19,14 @@
   "contributors": [
     {
       "name": "phit",
-      "email": "phit@hush.com"
+      "email": "me@phit.link"
     }
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/phit/nodebb-widget-teamspeak/issues"
+    "url": "https://github.com/Stonebound/nodebb-widget-teamspeak/issues"
   },
-  "homepage": "https://github.com/phit/nodebb-widget-teamspeak",
+  "homepage": "https://github.com/Stonebound/nodebb-widget-teamspeak",
   "nbbpm": {
     "compatibility": "^1.0.0"
   },

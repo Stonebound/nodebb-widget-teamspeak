@@ -1,12 +1,11 @@
-#nodebb-widget-teamspeak
+# nodebb-widget-teamspeak-sb
 
-This plugin for NodeBB allows people to put a configurable widget on their website which shows their Teamspeak server's details.
+This plugin for NodeBB allows people to put a configurable widget on their website which shows their Teamspeak server's details. Forked from pitaj
 
 ##Installation
 
-Run `npm install phit/nodebb-widget-teamspeak` in the root directory of the NodeBB install
+`npm install nodebb-widget-teamspeak-sb` or through the ACP.
 
-Don't forget to restart after installing the plugin. After installing, a new Teamspeak widget should appear next to the rest
 
 ##Configuration
 All one must do is, in the NodeBB Admin area, go to Themes > Widgets, drag the widget wherever you want, and configure the options for the widget.
@@ -18,4 +17,4 @@ All one must do is, in the NodeBB Admin area, go to Themes > Widgets, drag the w
 * Can show the full channel tree, and users can be themed by server group, and channels can be themed by channel type
 
 ## Suggestions? Encountered a Bug?
-Please submit all feature requests and bugs with the [Issue tracker at Github.](https://github.com/pitaj/nodebb-widget-teamspeak/issues) Thanks
+Please submit all feature requests and bugs with the [Issue tracker at Github.](https://github.com/Stonebound/nodebb-widget-teamspeak/issues) Thanks
