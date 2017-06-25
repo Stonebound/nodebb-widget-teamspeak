@@ -23,7 +23,7 @@
         
         function ts3Error(reason, err) {
             console.error(err);
-            var errhtml = "" + fs.readFileSync("./public/templates/ts3-err.tpl");
+            var errhtml = "" + fs.readFileSync(path.resolve(__dirname, "./public/templates/ts3-err.tpl"));
             errhtml = errhtml.replace(new RegExp("{{errormessage}}", "g"), reason);
             return errhtml;
         }
@@ -74,7 +74,7 @@
                             }
                         }
 
-                        var pre = "" + fs.readFileSync("./public/templates/ts3.tpl");
+                        var pre = "" + fs.readFileSync(path.resolve(__dirname, "./public/templates/ts3.tpl"));
                         var rep = {
                             "ts3-online-clients": online_clients.length,
                             "ts3-server-name": serverInfo.name || "Teamspeak Server",
