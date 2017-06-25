@@ -16,7 +16,7 @@
 		<tr>
 			<td class="td-label" colspan="2">
 				<span class="text-danger">
-					Error: {{errormessage}}
+					Error: {reason}
 				</span>
 			</td>
 		</tr>

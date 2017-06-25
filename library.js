@@ -2,12 +2,13 @@
 
     "use strict";
 
-    var fs = require("fs"),
-        async = require('async'),
+    var async = require('async'),
+        fs = require("fs"),
         path = require("path"),
+        templates = require('templates.js'),
         ts3sq = require("node-teamspeak");
 
-    module.renderTSwidget = function(widget, callback) {
+    module.renderTSWidget = function(widget, callback) {
         var serverInfo = {
             address: widget.data.address,
             username: widget.data.username,
@@ -18,46 +19,45 @@
             sid: widget.data.sid || 1
         };
 
-        var tsw = new ts3sq(serverInfo.sqaddress, serverInfo.sqport);
-        tsw.setTimeout(4000);
+        var query = new ts3sq(serverInfo.sqaddress, serverInfo.sqport);
+        query.setTimeout(4000);
         
         function ts3Error(reason, err) {
             console.error(err);
-            var errhtml = "" + fs.readFileSync(path.resolve(__dirname, "./public/templates/ts3-err.tpl"));
-            errhtml = errhtml.replace(new RegExp("{{errormessage}}", "g"), reason);
-            return errhtml;
+            var pre = "" + fs.readFileSync(path.resolve(__dirname, "./public/templates/ts3-err.tpl"));
+            return templates.parse(pre, reason);
         }
         
-        tsw.on("timeout", function(err) {
-            var reason = "Connection timed out!"
+        query.on("timeout", function(err) {
+            var reason = {reason: "Connection timed out!"};
             callback(null, {html: ts3Error(reason, err)});
         });
         
-        tsw.on("error", function(err) {
-            var reason = "Connection error!"
+        query.on("error", function(err) {
+            var reason = {reason: "Connection error!"};
             callback(null, {html: ts3Error(reason, err)});
         });
         
-        tsw.on("connect", function(res) {
-            tsw.send("login", {
+        query.on("connect", function(res) {
+            query.send("login", {
                 client_login_name: serverInfo.username,
                 client_login_password: serverInfo.password
             }, function(err, res) {
                 if (err) {
                     // login fail or ban
-                    var reason = "Query login failed!"
-                    tsw.send("quit");
+                    var reason = {reason: "Query login failed!"};
+                    query.send("quit");
                     callback(null, {html: ts3Error(reason, err)});
                     return;
                 }
                 
-                tsw.send("use", {
+                query.send("use", {
                     sid: serverInfo.sid
                 }, function(err, res) {
                     if (err) {                      
                         // no such server
-                        var reason = "Invalid SID!"
-                        tsw.send("quit");
+                        var reason = {reason: "Invalid SID!"};
+                        query.send("quit");
                         callback(null, {html: ts3Error(reason, err)});
                         return;
                     }
@@ -79,17 +79,12 @@
                             "ts3-online-clients": online_clients.length,
                             "ts3-server-name": serverInfo.name || "Teamspeak Server",
                             "ts3-address": serverInfo.address,
-                            "ts3-tree": cycle(obj),
+                            "ts3-showtree": widget.data.showtree,
+                            "ts3-tree": null,
                         };
 
-                        if (!widget.data.showtree) {
-                            rep["ts3-tree"] = "<!-- tree hidden -->";
-                        }
-                        var x;
-                        for (x in rep) {
-                            if (rep.hasOwnProperty(x)) {
-                                pre = pre.replace(new RegExp("{{" + x + "}}", "g"), rep[x]);
-                            }
+                        if (widget.data.showtree) {
+                            rep["ts3-tree"] = cycle(obj);
                         }
 
                         function cycle(o) {
@@ -150,17 +145,17 @@
                             return html;
                         }
 
-                        callback(null, {html: pre});
+                        callback(null, {html: templates.parse(pre, rep)});
 
                     }
 
                     function getChannelsAndClients(callback) {
-                        tsw.send("clientlist", function(err, clients) {
+                        query.send("clientlist", function(err, clients) {
                             if (err) {
                                 console.error(err);
                             }
                             //console.log(clients);
-                            tsw.send("channellist", function(err, channels) {
+                            query.send("channellist", function(err, channels) {
                                 if (err) {
                                     console.error(err);
                                 }
@@ -206,7 +201,7 @@
 
                                 async.map(clients, function(client, cb) {
 
-                                    tsw.send("clientinfo", {
+                                    query.send("clientinfo", {
                                         clid: client.clid
                                     }, function(err, clientinfo) {
 
@@ -227,7 +222,7 @@
 
                                     });
                                 }, function(err, results) {
-                                    tsw.send("quit");
+                                    query.send("quit");
                                     if (callback) {
                                         callback(cascade, clientsinfo);
                                     }
