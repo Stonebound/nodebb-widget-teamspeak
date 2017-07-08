@@ -4,12 +4,9 @@
     "description": "Teamspeak 3 server widget for NodeBB - Stonebound Fork",
     "url": "https://github.com/Stonebound/nodebb-widget-teamspeak",
     "library": "library.js",
-    "staticDirs": {
-        "public": "public"
-    },
     "hooks": [
         { "hook": "filter:widgets.getWidgets", "method": "defineWidget" },
-        { "hook": "filter:widget.render:teamspeak", "method": "renderTSwidget" }
+        { "hook": "filter:widget.render:teamspeak", "method": "renderTSWidget" }
     ],
     "css": [
     	"public/style.css"
