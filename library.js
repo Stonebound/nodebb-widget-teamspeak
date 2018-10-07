@@ -21,23 +21,25 @@
 
         var query = new ts3sq(serverInfo.sqaddress, serverInfo.sqport);
         query.setTimeout(4000);
-        
+
         function ts3Error(reason, err) {
             console.error(err);
             var pre = "" + fs.readFileSync(path.resolve(__dirname, "./public/templates/ts3-err.tpl"));
             return templates.parse(pre, reason);
         }
-        
+
         query.on("timeout", function(err) {
             var reason = {reason: "Connection timed out!"};
-            callback(null, {html: ts3Error(reason, err)});
+            widget.html = ts3Error(reason, err);
+            callback(null, widget);
         });
-        
+
         query.on("error", function(err) {
             var reason = {reason: "Connection error!"};
-            callback(null, {html: ts3Error(reason, err)});
+            widget.html = ts3Error(reason, err);
+            callback(null, widget);
         });
-        
+
         query.on("connect", function(res) {
             query.send("login", {
                 client_login_name: serverInfo.username,
@@ -47,18 +49,20 @@
                     // login fail or ban
                     var reason = {reason: "Query login failed!"};
                     query.send("quit");
-                    callback(null, {html: ts3Error(reason, err)});
+                    widget.html = ts3Error(reason, err);
+                    callback(null, widget);
                     return;
                 }
-                
+
                 query.send("use", {
                     sid: serverInfo.sid
                 }, function(err, res) {
-                    if (err) {                      
+                    if (err) {
                         // no such server
                         var reason = {reason: "Invalid SID!"};
                         query.send("quit");
-                        callback(null, {html: ts3Error(reason, err)});
+                        widget.html = ts3Error(reason, err);
+                        callback(null, widget);
                         return;
                     }
 
@@ -144,8 +148,8 @@
 
                             return html;
                         }
-
-                        callback(null, {html: templates.parse(pre, rep)});
+                        widget.html = templates.parse(pre, rep);
+                        callback(null, widget);
 
                     }
 
