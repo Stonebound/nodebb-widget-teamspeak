@@ -30,12 +30,14 @@
 
         query.on("timeout", function(err) {
             var reason = {reason: "Connection timed out!"};
-            callback(null, {html: ts3Error(reason, err)});
+            widget.html = ts3Error(reason, err);
+            callback(null, widget);
         });
 
         query.on("error", function(err) {
             var reason = {reason: "Connection error!"};
-            callback(null, {html: ts3Error(reason, err)});
+            widget.html = ts3Error(reason, err);
+            callback(null, widget);
         });
 
         query.on("connect", function(res) {
@@ -47,7 +49,8 @@
                     // login fail or ban
                     var reason = {reason: "Query login failed!"};
                     query.send("quit");
-                    callback(null, {html: ts3Error(reason, err)});
+                    widget.html = ts3Error(reason, err);
+                    callback(null, widget);
                     return;
                 }
 
@@ -58,7 +61,8 @@
                         // no such server
                         var reason = {reason: "Invalid SID!"};
                         query.send("quit");
-                        callback(null, {html: ts3Error(reason, err)});
+                        widget.html = ts3Error(reason, err);
+                        callback(null, widget);
                         return;
                     }
 
@@ -144,8 +148,8 @@
 
                             return html;
                         }
-
-                        callback(null, {html: templates.parse(pre, rep)});
+                        widget.html = templates.parse(pre, rep);
+                        callback(null, widget);
 
                     }
 
